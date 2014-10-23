@@ -51,18 +51,18 @@ var Engine = function () {
         board[5][5] = "black";
     };
 
-    this.checkJuxtaposition = function (){
-        for(var line = 1; line < 5; line++){
-            for(var column = 1; column < 5; column++){
+    this.checkJuxtaposition = function () {
+        for (var line = 1; line < 5; line++) {
+            for (var column = 1; column < 5; column++) {
                 var currentColor = board[line][column];
-                if(board[line - 1][column] == currentColor || board[line + 1][column] == currentColor) return false;
-                if(board[line][column - 1] == currentColor || board[line][column + 1] == currentColor) return false;
+                if (board[line - 1][column] == currentColor || board[line + 1][column] == currentColor) return false;
+                if (board[line][column - 1] == currentColor || board[line][column + 1] == currentColor) return false;
             }
         }
-        if(board[0][0] == board[0][1] || board[0][0] == board[1][0]) return false;
-        if(board[5][5] == board[5][4] || board[0][0] == board[4][5]) return false;
-        if(board[0][5] == board[1][5] || board[0][0] == board[0][4]) return false;
-        if(board[5][0] == board[5][1] || board[0][0] == board[4][0]) return false;
+        if (board[0][0] == board[0][1] || board[0][0] == board[1][0]) return false;
+        if (board[5][5] == board[5][4] || board[0][0] == board[4][5]) return false;
+        if (board[0][5] == board[1][5] || board[0][0] == board[0][4]) return false;
+        if (board[5][0] == board[5][1] || board[0][0] == board[4][0]) return false;
         return true;
     }
 };
