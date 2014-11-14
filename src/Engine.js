@@ -3,16 +3,26 @@
 var Engine = function () {
 
 // private attributes and methods
+    var marble_total = 36;
+
+    var current_player = 0;
+
+    var player_marble = new Array(2);
+
     var board = new Array(6);
-    for (var line = 0; line < 6; line++) {
-        board[line] = new Array(6);
-        for (var column = 0; column < 6; column++) {
-            board[line][column] = 0;
-        }
-    }
+
 
 // public methods
     this.init = function () {
+        for (var line = 0; line < 6; line++) {
+            player_marble[line] = new Array(6);
+            for (var column = 0; column < 6; column++) {
+                player_marble[line][column] = 0;
+            }
+        }
+        for (var line = 0; line < 6; line++) {
+            board[line] = new Array(6);
+        }
         board[0][0] = "black";
         board[0][1] = "green";
         board[0][2] = "white";
@@ -51,7 +61,7 @@ var Engine = function () {
         board[5][5] = "black";
     };
 
-    this.checkJuxtaposition = function () {
+    this.check_juxtaposition = function () {
         for (var line = 1; line < 5; line++) {
             for (var column = 1; column < 5; column++) {
                 var currentColor = board[line][column];
@@ -64,5 +74,30 @@ var Engine = function () {
         if (board[0][5] == board[1][5] || board[0][0] == board[0][4]) return false;
         if (board[5][0] == board[5][1] || board[0][0] == board[4][0]) return false;
         return true;
-    }
+    };
+
+    this.check_marble = function (line, column) {
+        return board[line][column.charCodeAt(0) - 97];
+    };
+
+    var increment_marble = function (color) {
+        if (color == "yellow") {
+            player_marble[current_player][0] += 1;
+        }
+    };
+
+    this.get_marble = function (line, column) {
+        increment_marble(board[line][column.charCodeAt(0) - 97]);
+        board[line][column.charCodeAt(0) - 97] = "null";
+        marble_total--;
+    };
+
+    this.count_marble = function () {
+        return marble_total;
+    };
+
+    this.check_marble_nb = function (color) {
+        return player_marble[current_player][color];
+    };
+
 };
