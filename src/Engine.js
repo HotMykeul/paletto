@@ -94,6 +94,7 @@ var Engine = function () {
         increment_marble(board[line][column.charCodeAt(0) - 97]);
         board[line][column.charCodeAt(0) - 97] = "null";
         marble_total--;
+        return 0;
     };
 
     this.count_marble = function () {
