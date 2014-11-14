@@ -5,7 +5,7 @@ var Engine = function () {
 // private attributes and methods
     var marble_total = 36;
 
-    var current_player = 0;
+    var current_player;
 
     var player_marble = new Array(2);
 
@@ -14,6 +14,7 @@ var Engine = function () {
 
 // public methods
     this.init = function () {
+        current_player = 0;
         for (var line = 0; line < 6; line++) {
             player_marble[line] = new Array(6);
             for (var column = 0; column < 6; column++) {
@@ -84,17 +85,36 @@ var Engine = function () {
         if (color == "yellow") {
             player_marble[current_player][0] += 1;
         }
-
         if (color == "black") {
             player_marble[current_player][1] += 1;
         }
+        if (color == "blue") {
+            player_marble[current_player][2] += 1;
+        }
+        if (color == "green") {
+            player_marble[current_player][3] += 1;
+        }
+        if (color == "red") {
+            player_marble[current_player][4] += 1;
+        }
+        if (color == "white") {
+            player_marble[current_player][5] += 1;
+        }
+    };
+
+    var check_winner = function () {
+        for (var column = 0; column < 6; column++) {
+            if (player_marble[current_player][column] == 6) return current_player + 1;
+        }
+        return 0;
     };
 
     this.get_marble = function (line, column) {
         increment_marble(board[line][column.charCodeAt(0) - 97]);
         board[line][column.charCodeAt(0) - 97] = "null";
         marble_total--;
-        return 0;
+        var ret = check_winner();
+        return ret;
     };
 
     this.count_marble = function () {
@@ -106,7 +126,7 @@ var Engine = function () {
     };
 
     this.change_player = function () {
-        if(current_player == 0) current_player = 1;
+        if (current_player == 0) current_player = 1;
         else current_player = 0;
     }
 };
