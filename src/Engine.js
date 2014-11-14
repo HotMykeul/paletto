@@ -15,7 +15,8 @@ var Engine = function () {
 // public methods
     this.init = function () {
         current_player = 0;
-        for (var line = 0; line < 6; line++) {
+        marble_total = 36;
+        for (var line = 0; line < 2; line++) {
             player_marble[line] = new Array(6);
             for (var column = 0; column < 6; column++) {
                 player_marble[line][column] = 0;
@@ -106,6 +107,7 @@ var Engine = function () {
         for (var column = 0; column < 6; column++) {
             if (player_marble[current_player][column] == 6) return current_player + 1;
         }
+        if (marble_total == 0) return current_player + 1;
         return 0;
     };
 
@@ -114,6 +116,7 @@ var Engine = function () {
         board[line][column.charCodeAt(0) - 97] = "null";
         marble_total--;
         var ret = check_winner();
+        console.log(ret);
         return ret;
     };
 

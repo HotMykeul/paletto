@@ -75,13 +75,13 @@ var PalettoTestCase7 = TestCase("PalettoTestCase7");
 PalettoTestCase7.prototype.testStory7 = function () {
     p.init();
     assertTrue(p.get_marble(0, 'a') == 0);
-    assertTrue(p.get_marble(5, 'f') == 0);
+    assertTrue(p.get_marble(0, 'f') == 0);
     p.change_player();
     assertTrue(p.get_marble(1, 'a') == 0);
     assertTrue(p.get_marble(5, 'a') == 0);
     p.change_player();
     assertTrue(p.get_marble(4, 'a') == 0);
-    assertTrue(p.get_marble(0, 'f') == 0);
+    assertTrue(p.get_marble(5, 'f') == 0);
     p.change_player();
     assertTrue(p.get_marble(5, 'e') == 0);
     assertTrue(p.get_marble(0, 'b') == 0);
