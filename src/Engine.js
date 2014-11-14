@@ -84,6 +84,10 @@ var Engine = function () {
         if (color == "yellow") {
             player_marble[current_player][0] += 1;
         }
+
+        if (color == "black") {
+            player_marble[current_player][1] += 1;
+        }
     };
 
     this.get_marble = function (line, column) {
@@ -100,4 +104,8 @@ var Engine = function () {
         return player_marble[current_player][color];
     };
 
+    this.change_player = function () {
+        if(current_player == 0) current_player = 1;
+        else current_player = 0;
+    }
 };
